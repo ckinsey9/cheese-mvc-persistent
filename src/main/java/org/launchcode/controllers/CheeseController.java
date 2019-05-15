@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -77,6 +74,16 @@ public class CheeseController {
         }
 
         return "redirect:";
+    }
+
+    @RequestMapping(value= "/category/{categoryId}", method= RequestMethod.GET)
+    public String category(@PathVariable("categoryId") int categoryId, Model model) {
+        Category cat = categoryDao.findOne(categoryId);
+
+
+        model.addAttribute("title", cat.getName());
+        model.addAttribute("cheeses", cat.getCheeses());
+        return "cheese/index";
     }
 
 }
