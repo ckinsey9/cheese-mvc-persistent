@@ -67,9 +67,12 @@ public class CheeseController {
     }
 
     @RequestMapping(value = "remove", method = RequestMethod.POST)
-    public String processRemoveCheeseForm(@RequestParam int[] cheeseIds) {
+    public String processRemoveCheeseForm(@RequestParam(value = "cheeseIds",
+            required = false, defaultValue = "") int[] cheeseIds) {
 
         for (int cheeseId : cheeseIds) {
+            //use cheeseId to search menuDao and remove all instances
+            //use a couple for loops to loop through all menus and all cheeses in them?
             cheeseDao.delete(cheeseId);
         }
 
