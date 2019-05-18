@@ -26,7 +26,7 @@ public class Cheese {
     @ManyToOne
     private Category category;
 
-    //added for Part 3
+    //added for Part 3 and experimenting with "cascade"
     @ManyToMany(mappedBy = "cheeses")
     private List<Menu> menus;
 
